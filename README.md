@@ -20,7 +20,7 @@ O objetivo do frontend é criar uma interface para que o usuário possa navegar 
 - **jsonwebtoken**: Implementação de JSON Web Tokens para Node.js.
 - **docker**: Plataforma de conteinerização para desenvolvimento, implantação e execução de aplicativos.
 - **postgres**:  Sistema de gerenciamento de banco de dados relacional de código aberto.
-- **PNPM**: Gerenciador de pacotes rápido, eficiente, que compartilha dependências entre diferentes projetos
+- **PNPM**: Gerenciador de pacotes rápido, eficiente, que compartilha dependências entre diferentes projetos.
 
 ### Checklist de desenvolvimento do backend:
 
@@ -56,6 +56,39 @@ Acesse a pasta backend e execute os seguintes comandos:
   ```
 
 3. **Execução do Projeto:**
+  ```sh
+   pnpm dev
+  ```
+
+## Frontend
+
+### Tecnologias Utilizadas
+- **React:** Uma biblioteca JavaScript para construir interfaces de usuário.
+- **TypeScript:** Um superset tipado de JavaScript que adiciona tipagem estática à linguagem.
+- **Chakra UI:** Uma biblioteca de componentes React acessíveis e estilizados.
+- **PNPM**: Gerenciador de pacotes rápido, eficiente, que compartilha dependências entre diferentes projetos.
+
+### Checklist de desenvolvimento do frontend:
+- [ ] Página para a realização do login e logout.
+- [ ] Página de filmes
+   - [x] Listagem
+   - [ ] Cadastro do filme.
+   - [ ] Página de detalhe do filme.
+
+### Outros itens
+- [ ] Testes
+
+
+### Instruções de Uso
+
+Acesse a pasta frontend e execute os seguintes comandos:
+
+1. **Instalação das Dependências:**
+  ```sh
+   pnpm install
+  ```
+
+2. **Execução do Projeto:**
   ```sh
    pnpm dev
   ```
