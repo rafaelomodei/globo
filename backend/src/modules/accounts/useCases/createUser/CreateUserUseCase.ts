@@ -13,10 +13,7 @@ class CreateUserUseCase {
   ) {}
 
   async execute(data: IUserDTO): Promise<User> {
-    const { email, password } = data;
-
-    console.info('CreateUserUseCase::email: ', email);
-    console.info('CreateUserUseCase::password: ', password);
+    const { email, password, isAdm } = data;
 
     const emailUser = email.toLowerCase();
     const userAlreadyExists = await this.usersRepository.findByEmail(emailUser);
@@ -28,6 +25,7 @@ class CreateUserUseCase {
     const user = {
       password: passwordHash,
       email: email.toLowerCase(),
+      isAdm,
     };
 
     const userCreated = await this.usersRepository.create(user);

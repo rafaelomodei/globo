@@ -4,20 +4,13 @@ import { sign } from 'jsonwebtoken';
 import { AppError } from '../../../../shared/errors/AppErrors';
 import { IUsersRepository } from '../../repositories/IUserRepositories';
 import { config as envConfig } from 'dotenv';
+import {} from '../../dtos/IUserDTO';
+import {
+  IAuthenticateRequestDTO,
+  IAuthenticateResponseDTO,
+} from '../../dtos/IAuthenticateDTO';
 envConfig();
 const { env } = process;
-
-interface IResquest {
-  email: string;
-  password: string;
-}
-
-interface IResposen {
-  user: {
-    email: string;
-  };
-  token: string;
-}
 
 @injectable()
 class AuthenticateUsersUseCase {
@@ -26,15 +19,17 @@ class AuthenticateUsersUseCase {
     private usersRepository: IUsersRepository
   ) {}
 
-  async execute({ email, password }: IResquest): Promise<IResposen> {
+  async execute({
+    email,
+    password,
+  }: IAuthenticateRequestDTO): Promise<IAuthenticateResponseDTO> {
     const user = await this.usersRepository.findByEmail(email);
     if (!user) throw new AppError('Email or password incorrect', 401);
 
     const passwordMarch = await compare(password, user.password);
     if (!passwordMarch) throw new AppError('Email or password incorrect', 401);
 
-    const token = sign({}, `${env.KEY_JWT}`, {
-      subject: user.id,
+    const token = sign({ id: user.id }, `${env.KEY_JWT}`, {
       expiresIn: '1d',
     });
 
